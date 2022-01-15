@@ -1,11 +1,29 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Line} from 'react-native-svg';
+import {polarToCartesian} from '../../helpers/geometry';
 
-const ClockHand = () => {
+type Props = {
+  center: number;
+  radius: number;
+  angle: number;
+  strokeWidth: string;
+  stroke: string;
+};
+
+const ClockHand = (props: Props) => {
+  const {center, radius, angle, stroke, strokeWidth} = props;
+  const {x, y} = polarToCartesian(center, center, radius, angle);
+
   return (
-    <View>
-      <Text></Text>
-    </View>
+    <Line
+      x1={center}
+      y1={center}
+      x2={x}
+      y2={y}
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      stroke={stroke}
+    />
   );
 };
 
