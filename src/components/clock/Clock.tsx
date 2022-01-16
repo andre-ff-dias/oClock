@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Svg from 'react-native-svg';
 import {Dimensions} from 'react-native';
+import styled from 'styled-components';
 import ClockMarkings from './ClockMarkings';
 import ClockHand from './ClockHand';
 import {getTime} from '../../helpers/time';
@@ -28,25 +29,22 @@ const Clock = () => {
         radius={radius}
         center={center}
       />
-      <ClockHand
+      <Seconds
         angle={time.seconds}
         center={center}
         radius={radius}
-        stroke="red"
         strokeWidth="1"
       />
-      <ClockHand
+      <Minutes
         angle={time.minutes}
         center={center}
         radius={radius}
-        stroke="white"
         strokeWidth="5"
       />
-      <ClockHand
+      <Hours
         angle={time.hours}
         center={center}
         radius={radius}
-        stroke="white"
         strokeWidth="7"
       />
     </Svg>
@@ -54,3 +52,18 @@ const Clock = () => {
 };
 
 export default Clock;
+
+const Seconds = styled(ClockHand).attrs(({theme}) => ({
+  stroke: theme.accentColor,
+  strokeOpacity: '1',
+}))``;
+
+const Minutes = styled(ClockHand).attrs(({theme}) => ({
+  stroke: theme.tertiaryColor,
+  strokeOpacity: '0.5',
+}))``;
+
+const Hours = styled(ClockHand).attrs(({theme}) => ({
+  stroke: theme.primaryColor,
+  strokeOpacity: '0.8',
+}))``;
