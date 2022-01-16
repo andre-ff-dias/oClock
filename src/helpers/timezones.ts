@@ -777,7 +777,7 @@ export const timezones = [
             },
             {
                 name: "South Georgia and South Sandwich Islands",
-                code: ""
+                code: "GS"
             }
         ]
     },
