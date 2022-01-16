@@ -15,3 +15,9 @@ export const getTime = (): TimeObject => {
     const seconds = (date.getSeconds() / 60) * 360;
     return { hours, minutes, seconds };
 };
+
+export const getUTC = (): number => {
+    const date = new Date();
+    let utc = 17 - date.getTimezoneOffset() / 60 - date.getHours();
+    return utc;
+}
