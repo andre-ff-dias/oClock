@@ -766,6 +766,16 @@ export const timezones = [
         utc: -2,
         contries: [
             {
+                name: "Brazil",
+                code: "BR",
+                cities: [
+                    {
+                        name: "Fernando de Noronha",
+                        code: ""
+                    }
+                ]
+            },
+            {
                 name: "South Georgia and South Sandwich Islands",
                 code: ""
             }
