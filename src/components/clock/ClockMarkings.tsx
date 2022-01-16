@@ -1,5 +1,6 @@
 import React from 'react';
 import {G, Line, Text} from 'react-native-svg';
+import styled from 'styled-components';
 import {polarToCartesian} from '../../helpers/geometry';
 
 type Props = {
@@ -15,10 +16,10 @@ const ClockMarkings = (props: Props) => {
   const hoursArray = new Array(hours).fill(1);
 
   const minuteSticks = minutesArray.map((minute, index) => {
-    const start = polarToCartesian(center, center, radius, index * 5);
-    const end = polarToCartesian(center, center, radius, index * 5);
+    const start = polarToCartesian(center, center, radius, index * 6);
+    const end = polarToCartesian(center, center, radius, index * 6);
     return (
-      <Line
+      <Minute
         stroke="white"
         strokeWidth={2}
         strokeLinecap="round"
@@ -38,7 +39,7 @@ const ClockMarkings = (props: Props) => {
 
     return (
       <G key={index}>
-        <Line
+        <HourLine
           stroke="white"
           strokeWidth={3}
           strokeLinecap="round"
@@ -47,7 +48,7 @@ const ClockMarkings = (props: Props) => {
           y1={start.y}
           y2={end.y}
         />
-        <Text
+        <HourNumber
           textAnchor="middle"
           fontSize="17"
           fontWeight="bold"
@@ -56,7 +57,7 @@ const ClockMarkings = (props: Props) => {
           x={time.x}
           y={time.y}>
           {index === 0 ? 12 : index}
-        </Text>
+        </HourNumber>
       </G>
     );
   });
@@ -70,3 +71,15 @@ const ClockMarkings = (props: Props) => {
 };
 
 export default ClockMarkings;
+
+const Minute = styled(Line).attrs(({theme}) => ({
+  stroke: theme.secondaryColor,
+}))``;
+
+const HourLine = styled(Line).attrs(({theme}) => ({
+  stroke: theme.secondaryColor,
+}))``;
+
+const HourNumber = styled(Text).attrs(({theme}) => ({
+  fill: theme.primaryColor,
+}))``;
